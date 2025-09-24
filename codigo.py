@@ -69,6 +69,38 @@ class RobotGuerrero(Robot):
 
     def describir(self):
         estado = "encendido" if self.encendido else "apagado"
+
+    # ------------------ PRUEBAS ------------------
+
+# Creamos los robots con nombres icónicos
+robot1 = Robot("R2D2", bateria=80)            # Robot genérico
+robot2 = RobotMovil("Wall-E", bateria=50)     # Robot móvil
+robot3 = RobotLider("OptimusPrime", bateria=70)  # Robot líder
+robot4 = RobotGuerrero("T-800", bateria=90)      # Robot guerrero
+
+# Probamos sus métodos
+robot1.encender()
+print(robot1.describir())
+
+robot2.encender()
+robot2.mover(3, 4)
+print(robot2.describir())
+
+robot3.encender()
+robot3.asignar_mision("Proteger a los Autobots")
+robot3.asignar_mision("Defender la Tierra")
+print(robot3.describir())
+
+robot4.encender()
+robot4.atacar("John Connor")
+robot4.atacar("Policía T-1000")
+print(robot4.describir())
+
+# Polimorfismo: lista de robots
+robots = [robot1, robot2, robot3, robot4]
+print("\n--- Estado de todos los robots ---")
+for r in robots:
+    print(r.describir())
         return (f"RobotGuerrero {self.nombre} | "
                 f"Objetivos neutralizados: {self.objetivos} | "
                 f"Batería: {self.bateria}% | Estado: {estado}")
