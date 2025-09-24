@@ -47,3 +47,29 @@ class RobotLider(Robot):
         return (f"RobotLider {self.nombre} | "
                 f"Misiones cumplidas: {len(self.misiones)} | "
                 f"Batería: {self.bateria}% | Estado: {estado}")
+
+# Subclase 3: RobotGuerrero -> T-800 (Terminator)
+class RobotGuerrero(Robot):
+    """
+    Robot de combate inspirado en T-800.
+    Hereda de Robot y añade contador de objetivos neutralizados.
+    """
+
+    def __init__(self, nombre, bateria=100):
+        super().__init__(nombre, bateria)
+        self.objetivos = 0
+
+    def atacar(self, enemigo):
+        if self.encendido and self.bateria > 0:
+            self.objetivos += 1
+            self.bateria = max(0, self.bateria - 20)
+            print(f"{self.nombre} neutralizó al objetivo: {enemigo}")
+        else:
+            print(f"{self.nombre} no puede atacar (apagado o sin batería).")
+
+    def describir(self):
+        estado = "encendido" if self.encendido else "apagado"
+        return (f"RobotGuerrero {self.nombre} | "
+                f"Objetivos neutralizados: {self.objetivos} | "
+                f"Batería: {self.bateria}% | Estado: {estado}")
+
