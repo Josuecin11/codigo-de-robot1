@@ -1,3 +1,30 @@
+# Clase base
+class Robot:
+    """
+    Clase que representa un robot genérico.
+    Tiene un nombre y un nivel de batería.
+    """
+
+    def _init_(self, nombre, bateria=100):
+        self.nombre = nombre
+        self.bateria = bateria
+        self.encendido = False
+
+    def encender(self):
+        if self.bateria > 0:
+            self.encendido = True
+            print(f"{self.nombre} está encendido.")
+        else:
+            print(f"{self.nombre} no puede encenderse: batería agotada.")
+
+    def apagar(self):
+        self.encendido = False
+        print(f"{self.nombre} se apagó.")
+
+    def describir(self):
+        estado = "encendido" if self.encendido else "apagado"
+        return f"Robot {self.nombre} | Batería: {self.bateria}% | Estado: {estado}"
+
 # Subclase 1: RobotMovil
 class RobotMovil(Robot):
     """
