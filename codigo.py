@@ -23,3 +23,27 @@ class RobotMovil(Robot):
         estado = "encendido" if self.encendido else "apagado"
         return (f"RobotMovil {self.nombre} | Posición: ({self.x}, {self.y}) | "
                 f"Batería: {self.bateria}% | Estado: {estado}")
+# Subclase 2: RobotDomestico -> renombrado a OptimusPrime (líder, hace "tareas")
+class RobotLider(Robot):
+    """
+    Robot líder que organiza y ejecuta tareas.
+    Hereda de Robot y añade una lista de misiones.
+    """
+
+    def _init_(self, nombre, bateria=100):
+        super()._init_(nombre, bateria)
+        self.misiones = []
+
+    def asignar_mision(self, mision):
+        if self.encendido and self.bateria > 0:
+            self.misiones.append(mision)
+            self.bateria = max(0, self.bateria - 10)
+            print(f"{self.nombre} completó la misión: {mision}")
+        else:
+            print(f"{self.nombre} no puede realizar misiones (apagado o sin batería).")
+
+    def describir(self):
+        estado = "encendido" if self.encendido else "apagado"
+        return (f"RobotLider {self.nombre} | "
+                f"Misiones cumplidas: {len(self.misiones)} | "
+                f"Batería: {self.bateria}% | Estado: {estado}")
